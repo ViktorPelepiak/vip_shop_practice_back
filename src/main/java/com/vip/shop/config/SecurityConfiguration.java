@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String[] WHITE_LIST_URLS = {"/ping", "/admin", "/mail", "/security/registration", "/security/token/verification",
-    "/security/token/update", "/security/login"};
+    "/security/token/update", "/security/login", "/categories", "/products/**"};
     private static final String[] RESOURCE_URLS = {"/resources/**"};
     private static final String[] BLACK_LIST_URLS = {};
     private static final String[] ADMIN_URLS = {"machine/brand/**", "machine/model/**"};
