@@ -1,9 +1,8 @@
 package com.vip.shop.dto;
 
 import com.vip.shop.models.Product;
-import org.springframework.core.env.Environment;
 
-public class ProductDisplayDTO {
+public class ProductDisplayDto {
     private Long id;
     private String title;
     private float price;
@@ -15,7 +14,7 @@ public class ProductDisplayDTO {
         return id;
     }
 
-    public ProductDisplayDTO setId(Long id) {
+    public ProductDisplayDto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -24,7 +23,7 @@ public class ProductDisplayDTO {
         return title;
     }
 
-    public ProductDisplayDTO setTitle(String title) {
+    public ProductDisplayDto setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -33,7 +32,7 @@ public class ProductDisplayDTO {
         return price;
     }
 
-    public ProductDisplayDTO setPrice(float price) {
+    public ProductDisplayDto setPrice(float price) {
         this.price = price;
         return this;
     }
@@ -42,7 +41,7 @@ public class ProductDisplayDTO {
         return description;
     }
 
-    public ProductDisplayDTO setDescription(String description) {
+    public ProductDisplayDto setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -51,7 +50,7 @@ public class ProductDisplayDTO {
         return category;
     }
 
-    public ProductDisplayDTO setCategory(String category) {
+    public ProductDisplayDto setCategory(String category) {
         this.category = category;
         return this;
     }
@@ -60,13 +59,13 @@ public class ProductDisplayDTO {
         return image;
     }
 
-    public ProductDisplayDTO setImage(String image) {
+    public ProductDisplayDto setImage(String image) {
         this.image = image;
         return this;
     }
 
-    public static ProductDisplayDTO toDto(Product product) {
-        return new ProductDisplayDTO()
+    public static ProductDisplayDto toDto(Product product) {
+        return new ProductDisplayDto()
                 .setId(product.getId())
                 .setTitle(product.getTitle())
                 .setCategory(product.getCategory().getName())

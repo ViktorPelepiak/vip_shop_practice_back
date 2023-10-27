@@ -1,6 +1,7 @@
 package com.vip.shop.controllers;
 
 import com.vip.shop.dto.CartDto;
+import com.vip.shop.dto.OrderShortDto;
 import com.vip.shop.exceptions.ElementNotFoundException;
 import com.vip.shop.rest.GenericResponse;
 import com.vip.shop.services.CartService;
@@ -49,10 +50,10 @@ public class CartController {
     }
 
     @GetMapping("ordered")
-    GenericResponse<List<CartDto>> getOrderedCarts() {
+    GenericResponse<List<OrderShortDto>> getOrderedCarts() {
         return GenericResponse.of(
                 cartService.getOrderedCartsForAuthoredUsers().stream()
-                        .map(CartDto::toDto)
+                        .map(OrderShortDto::toDto)
                         .collect(Collectors.toList())
         );
     }
