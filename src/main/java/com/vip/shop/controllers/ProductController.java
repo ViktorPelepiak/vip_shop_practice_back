@@ -2,6 +2,7 @@ package com.vip.shop.controllers;
 
 import com.vip.shop.dto.ProductDisplayDTO;
 import com.vip.shop.dto.SaveProductDto;
+import com.vip.shop.exceptions.ElementNotFoundException;
 import com.vip.shop.models.Product;
 import com.vip.shop.rest.GenericResponse;
 import com.vip.shop.services.ProductService;
@@ -44,6 +45,17 @@ public class ProductController {
     public @ResponseBody byte[] getImage(@PathVariable Long id) throws IOException {
         return new FileInputStream(environment.getProperty("new.image.path")
                 + productService.getImageByProductId(id)).readAllBytes();
+    }
+
+    @GetMapping("{id}")
+    public GenericResponse<ProductDisplayDTO> getProductById(@PathVariable Long id) {
+        try {
+            ProductDisplayDTO product =  ProductDisplayDTO.toDto(this.productService.getProductById(id));
+            product.setImage(environment.getProperty("application.url") + "/products/" + product.getId() + "/image");
+            return GenericResponse.of(product);
+        } catch (ElementNotFoundException e) {
+            return GenericResponse.error(e.getMessage());
+        }
     }
 
     @PostMapping
