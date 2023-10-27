@@ -50,6 +50,8 @@ public class CartServiceImpl implements CartService {
                 .orElse(Cart.createNewCartForUser(activeUser));
         activeCart.addItem(productService.getProductById(productId), 1);
 
+        activeCart = cartRepository.save(activeCart);
+
         activeCart.setItems(activeCart.getItems().stream()
                 .map(cartItemRepository::save)
                 .collect(Collectors.toSet()));

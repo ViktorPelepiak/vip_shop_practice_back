@@ -1,6 +1,6 @@
 package com.vip.shop.controllers;
 
-import com.vip.shop.dto.ProductDisplayDTO;
+import com.vip.shop.dto.ProductDisplayDto;
 import com.vip.shop.dto.SaveProductDto;
 import com.vip.shop.exceptions.ElementNotFoundException;
 import com.vip.shop.models.Product;
@@ -32,9 +32,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public GenericResponse<List<ProductDisplayDTO>> getAll() {
+    public GenericResponse<List<ProductDisplayDto>> getAll() {
         return GenericResponse.of(productService.getAll().stream()
-                .map(ProductDisplayDTO::toDto)
+                .map(ProductDisplayDto::toDto)
                 .map(product -> product.setImage(environment.getProperty("application.url") + "/products/" + product.getId() + "/image"))
                 .collect(Collectors.toList()));
     }
@@ -48,9 +48,9 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public GenericResponse<ProductDisplayDTO> getProductById(@PathVariable Long id) {
+    public GenericResponse<ProductDisplayDto> getProductById(@PathVariable Long id) {
         try {
-            ProductDisplayDTO product =  ProductDisplayDTO.toDto(this.productService.getProductById(id));
+            ProductDisplayDto product =  ProductDisplayDto.toDto(this.productService.getProductById(id));
             product.setImage(environment.getProperty("application.url") + "/products/" + product.getId() + "/image");
             return GenericResponse.of(product);
         } catch (ElementNotFoundException e) {
