@@ -7,6 +7,7 @@ public class OrderShortDto {
     private String status;
     private String orderingDate;
     private Float price;
+    private String payButton;
 
     public Long getId() {
         return id;
@@ -44,6 +45,15 @@ public class OrderShortDto {
         return this;
     }
 
+    public String getPayButton() {
+        return payButton;
+    }
+
+    public OrderShortDto setPayButton(String payButton) {
+        this.payButton = payButton;
+        return this;
+    }
+
     public static OrderShortDto toDto(Cart cart) {
         return new OrderShortDto()
                 .setId(cart.getId())
@@ -52,12 +62,10 @@ public class OrderShortDto {
                         .map(item -> {return item.getQuantity() * item.getProduct().getPrice();})
                         .reduce(Float::sum).orElse(0f)
                 )
-                .setOrderingDate(String.format("%d/%d/%d %d:%d",
+                .setOrderingDate(String.format("%d/%d/%d",
                         cart.getOrderingDate().getDayOfMonth(),
                         cart.getOrderingDate().getMonthValue(),
-                        cart.getOrderingDate().getYear(),
-                        cart.getOrderingDate().getHour(),
-                        cart.getOrderingDate().getMinute()
+                        cart.getOrderingDate().getYear()
                 ));
     }
 }

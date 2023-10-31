@@ -75,4 +75,13 @@ public class CartServiceImpl implements CartService {
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()
         );
     }
+
+    @Override
+    public Cart registerPayment(Long order_id) {
+        return cartRepository.save(
+                cartRepository.findById(order_id)
+                        .orElseThrow(IllegalArgumentException::new)
+                .setStatus(CartStatus.PAYED)
+        );
+    }
 }
