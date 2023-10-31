@@ -26,6 +26,8 @@ public class User implements Serializable, UserDetails {
 
     private boolean enabled;
 
+    private boolean blocked;
+
     @ElementCollection(targetClass = UserRole.class)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
@@ -108,5 +110,14 @@ public class User implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public User setBlocked(boolean blocked) {
+        this.blocked = blocked;
+        return this;
     }
 }

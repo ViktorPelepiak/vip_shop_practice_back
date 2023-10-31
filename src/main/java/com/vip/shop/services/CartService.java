@@ -14,4 +14,6 @@ public interface CartService {
     Cart orderActiveCart() throws ElementNotFoundException;
 
     List<Cart> getOrderedCartsForAuthoredUsers();
+
+    Cart registerPayment(Long order_id);
 }
